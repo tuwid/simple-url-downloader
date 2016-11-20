@@ -1,0 +1,27 @@
+- hosts: all
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:
+    - name: Install the Python MySQLB module
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - tempfile
+        - validators
+        - ConfigParser
+
+    - name: Creates directory
+      file: path=/opt/downloader state=directory
+
+    - name: Copy main script
+      template: src=../main.py dest=/opt/downloader/urldownloader.py owner=root group=root mode=0755
+
+    - name: Copy config
+      template: src=../defaults.cnf dest=/opt/downloader/defaults.cnf owner=root group=root mode=0644
+
+    # - name: Set cron 
+    #   cron: minute="20" hour="5" weekday="sun"
+    #         name="Get Urls"
+    #         user="root"
+    #         job="/opt/downloader/urldownloader.py"
