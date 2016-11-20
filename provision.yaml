@@ -3,7 +3,7 @@
   become_user: root
   gather_facts: no
   tasks:
-    - name: Install the Python MySQLB module
+    - name: Install the Python modules
       pip:
         name: "{{ item }}"
       with_items:
