@@ -134,7 +134,7 @@ def startAll():
 	# When opening HTTPS URLs, it does not attempt to validate the server certificate
 	# should doublecheck this..
 
-	socket.setdefaulttimeout(10)
+	#socket.setdefaulttimeout(int(TIMEOUT))
 
 	for url in links:
 		if(checkLinkForm(url)):
