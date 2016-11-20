@@ -153,7 +153,7 @@ def startAll():
 			# httplib.HTTPException
 			# socket.error
 			except Exception,e:
-				print e
+				logger.error(e)
 				failed = open(STORE_PATH + TODAY + '/' + 'failed_urls',"w+")
 				failed.write(url + "\n")
 				failed.close()
